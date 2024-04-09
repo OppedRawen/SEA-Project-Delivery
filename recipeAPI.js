@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', getQuery);
 let searchForm = document.querySelector('#search-form');
 
 function getQuery() {
+    document.getElementById('loader').style.display = 'block';
+
     let query = window.location.search;
     let urlParams = new URLSearchParams(query);
     let recipe = urlParams.get('query');
@@ -31,8 +33,12 @@ function fetchRecipes(recipe) {
     }).then(data=>{
         console.log(data, 'data');
         displayRecipes(data);
+        document.getElementById('loader').style.display = 'none';
+
     }).catch(error=>{
         console.log('There was a problem with your fetch operation:', error);
+        document.getElementById('loader').style.display = 'none';
+
     });
 
 };
