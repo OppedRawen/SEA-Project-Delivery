@@ -1,43 +1,36 @@
 body, html {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f5f5dc; /* Beige background for a cozy feel */
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
+    background-color: #f5f5dc; 
 }
 
 nav {
-   display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-  
-    /* top left */
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
+    background-color:#333;
     
 }
 
 .saved-recipes-button{
     padding: 10px 20px;
-    background-color: #008CBA;
-    color: white;
+    background-color:#ddd;
+    color: #666;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 20px; 
 
 }
 .home-button {
     padding: 10px 20px;
-    background-color: #008CBA;
-    color: white;
+    background-color: #ddd;
+    color:#666;
+
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -46,9 +39,19 @@ nav {
 .home-button:hover {
     background-color: #45a049;
 }
-
+.background{
+    background-image: url('../assets/gifs/animeFood.gif');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
 .content {
-    max-width: 600px;
+    position:absolute;
+  
+    
+    width: 100%;
     margin: auto;
 }
 
@@ -68,9 +71,9 @@ p {
 #search-input {
     padding: 10px;
     width: 70%;
-    margin-right: -4px; /* Ensures no gap between input and button */
+    margin-right: -4px; 
     border: 1px solid #ddd;
-    border-radius: 5px 0 0 5px; /* Rounded corners on the left side */
+    border-radius: 5px 0 0 5px;
 }
 
 #search-button {
@@ -79,7 +82,7 @@ p {
     background-color: #008cba;
     color: white;
     cursor: pointer;
-    border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+    border-radius: 0 5px 5px 0; 
 }
 
 #search-button:hover {

@@ -56,26 +56,29 @@ function displayRecipeDetails(data) {
     // Building the HTML string using template literals
     let recipeElement = `
     <div class="container mt-4">
+    <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
+    <h5 class="card-title">${recipe.label}</h5>
+    <p><strong>Calories:</strong> ${recipe.calories.toFixed(2)}</p>
         <div class="row">
             <div class="col-md-6">
                 <div class="card" style="width: 100%;">
-                    <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
+                    
                     <div class="card-body">
-                        <h5 class="card-title">${recipe.label}</h5>
+                       <h5>Recipe Ingredients</h5>
                         <p class="card-text">${recipe.ingredientLines.join(', ')}</p>
-                        <a href="${recipe.url}" class="btn btn-primary" target="_blank">Link to Recipe</a>
+                        <a href="${recipe.url}" class="btn btn-primary link" target="_blank">Link to Recipe</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <h4>Details</h4>
-                <p><strong>Calories:</strong> ${recipe.calories.toFixed(2)}</p>
                 <p><strong>Cuisine Type:</strong> ${cuisineType}</p>
                 <p><strong>Diet Labels:</strong> ${dietLabels}</p>
                 <p><strong>Source:</strong> ${recipe.source}</p>
-                <h5>Total Nutrients</h5>
-                <ul>${nutrients}</ul>
+                
             </div>
+            <h5>Total Nutrients</h5>
+                <ul>${nutrients}</ul>
         </div>
     </div>`;
 
