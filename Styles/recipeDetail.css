@@ -1,0 +1,28 @@
+body{
+    font-family:Arial, Helvetica, sans-serif
+
+}
+.card-container{
+    max-width: 1200px;
+}
+.card-img-top{
+    max-height: 400px;
+    object-fit: cover;
+}
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-text, p {
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 14px;
+}

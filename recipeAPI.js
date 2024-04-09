@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', getQuery);
-document.addEventListener('DOMContentLoaded', fetchRecipes);
+
+let searchForm = document.querySelector('#search-form');
+
 function getQuery() {
     let query = window.location.search;
     let urlParams = new URLSearchParams(query);
@@ -36,18 +38,39 @@ function fetchRecipes(recipe) {
 };
 
 function displayRecipes(data) {
-    let recipe = data.hits;
-    console.log(recipe);
-    let recipeContainer = document.getElementById('recipe-container');
+    let results = data.hits;
+    console.log(results, 'recipes');
+    let recipeContainer = document.getElementById('results-container');
     recipeContainer.innerHTML = '';
-    const templateCard = document.querySelector(".card");
-    for (let i = 0; i < recipe.length; i++) {
-        let title = recipe[i].recipe.label;
-        let imageURL = recipe[i].recipe.image;
-        let ingredients = recipe[i].recipe.ingredientLines;
-        let url = recipe[i].recipe.url;
-        const nextCard = templateCard.cloneNode(true);
-        editCardContent(nextCard, title, imageURL, ingredients, url);
-        recipeContainer.appendChild(nextCard);
-    }
+
+    let recipeElements = results.map(function(result) {
+      
+        return `
+        <div class="card" data-uri=${result.recipe.uri} style="width: 18rem;">
+  <img src="${result.recipe.image}"class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${result.recipe.label}</h5>
+    <p class="card-text">${result.recipe.ingredientLines.join(', ')}</p>
+    <a href="${result.recipe.url}" class="btn btn-primary">Link to Recipe</a>
+  </div>
+</div>`
+    });
+    recipeContainer.innerHTML = recipeElements.join('');
+   
+
+    recipeContainer.addEventListener('click', function(e){
+        let targetCard = e.target.closest('.card');
+      
+        if(targetCard){
+            e.preventDefault();
+            let recipeURI= targetCard.getAttribute('data-uri');
+            localStorage.setItem('recipeURL', recipeURI);
+            console.log(recipeURI);
+        // Assuming you want to pass the recipe URL or any other simple attribute
+        window.location.href = `recipeDetails.html`;
+        }
 }
+)
+}
+
+

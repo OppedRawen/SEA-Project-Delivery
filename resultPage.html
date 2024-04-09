@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./Styles/resultPage.css">
+    
     <script src="./recipeAPI.js"></script>
+    <script src="./pageScript.js"></script>
+   
     <title>Recipe</title>
 </head>
 <body>
+    <!-- searchbar -->
+    <div class="search-container">
+        <form id="search-form">
+             <input type="text" id="search-input" placeholder="Search for a recipe">
+             <button type="submit" id="search-button">Search</button>
+         </form>
+     </div>
+ 
     <div id="results-container">
         <div class="result-card">
             <div class="result-card-content">

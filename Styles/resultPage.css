@@ -1,0 +1,29 @@
+/* recipe grid */
+#results-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+}
+
+/* recipe cards */
+.card{
+    border:1px solid #ccc;
+    margin:10px;
+    padding:10px;
+    border-radius:5px;
+ 
+    box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.card:hover{
+    cursor: pointer;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+    .card {
+        margin-top: 2rem;
+    }
+  }
