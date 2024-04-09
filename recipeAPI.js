@@ -51,7 +51,7 @@ function displayRecipes(data) {
   <div class="card-body">
     <h5 class="card-title">${result.recipe.label}</h5>
     <p class="card-text">${result.recipe.ingredientLines.join(', ')}</p>
-    <a href="${result.recipe.url}" class="btn btn-primary">Link to Recipe</a>
+    <button class="btn btn-primary learn-more" data-uri="${result.recipe.uri}">Learn More</button>
     <span class="heart" data-uri="${result.recipe.uri}">&#x2764;</span>
   </div>
 </div>`
@@ -70,6 +70,13 @@ function displayRecipes(data) {
         // // Assuming you want to pass the recipe URL or any other simple attribute
         // window.location.href = `recipeDetails.html`;
         // }
+        if(e.target.matches('.learn-more')){
+            e.preventDefault();
+            const uri = e.target.getAttribute('data-uri');
+            localStorage
+
+            window.location.href = `recipeDetails.html`;
+        }
 
         if(e.target.classList.contains('heart')){
             e.preventDefault();
