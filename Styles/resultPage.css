@@ -18,7 +18,7 @@ nav {
     padding: 0 20px;
     margin: auto;
     display: flex;
-    justify-content: space-between; /* Aligns content to the right */
+    justify-content: space-between;
   
 }
 .home-button {
@@ -82,7 +82,7 @@ nav {
 
 }
 .heart.heart-saved {
-    color: red; /* Color when the recipe is saved */
+    color: red;
 }
 .card {
     width: calc(33.33% - 20px); 
@@ -123,8 +123,8 @@ nav {
 /* spinny wheel */
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #3498db;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -133,7 +133,7 @@ nav {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000; /* Ensure it's above other content */
+    z-index: 1000; 
   }
   
   @keyframes spin {

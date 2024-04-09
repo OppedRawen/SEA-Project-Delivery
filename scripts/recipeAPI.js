@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', getQuery);
 
 let searchForm = document.querySelector('#search-form');
 
+// Event listener for search form
 function getQuery() {
     document.getElementById('loader').style.display = 'block';
 
@@ -12,9 +13,11 @@ function getQuery() {
     fetchRecipes(recipe);
 };
 
+// Fetch recipes from API
 function fetchRecipes(recipe) {
     let apiKey ='135c36155bd23b962aa9e0a9addb3b05'; 
     let apiId= '580529d7';
+    // Using a proxy to avoid CORS error
     var proxyUrl =  'https://afternoon-badlands-11870.herokuapp.com/'; 
     let url = 'https://api.edamam.com/api/recipes/v2';
     fetch(proxyUrl+url+`?type=public&q=${recipe}&app_id=${apiId}&app_key=${apiKey}`,{
@@ -27,11 +30,9 @@ function fetchRecipes(recipe) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         // parses response to json if successful
-        // not the actual data we need yet
         console.log(response, 'response');
         return response.json();
     }).then(data=>{
-        console.log(data, 'data');
         displayRecipes(data);
         document.getElementById('loader').style.display = 'none';
 
@@ -42,7 +43,7 @@ function fetchRecipes(recipe) {
     });
 
 };
-
+// display recipe by mapping through the data
 function displayRecipes(data) {
     let results = data.hits;
     console.log(results, 'recipes');
@@ -69,8 +70,9 @@ function displayRecipes(data) {
     });
     recipeContainer.innerHTML = recipeElements.join('');
    
+    // using dynamic event listener to handle click events on the recipe card itself
     recipeContainer.addEventListener('click', function(e) {
-        let target = e.target; // Define target here based on the event's target
+        let target = e.target; 
     
         if(target.matches('.learn-more')) {
             e.preventDefault();
@@ -78,7 +80,7 @@ function displayRecipes(data) {
             localStorage.setItem('currentRecipe', uri);
             window.location.href = `recipeDetails.html`;
         } else if (target.classList.contains('heart') || target.closest('.heart')) {
-          console.log('heart clicked');
+    
             e.preventDefault();
            
             if (!target.classList.contains('heart')) {
@@ -105,11 +107,11 @@ function displayRecipes(data) {
     
 }
 
-
+// for truncating text that is too long
 function truncateText(textArray, maxLength) {
     let text = textArray.join(', ');
     if (text.length > maxLength) {
-        return text.substring(0, maxLength - 3) + "..."; // Subtract 3 to accommodate the ellipsis
+        return text.substring(0, maxLength - 3) + "..."; 
     }
     return text;
 }

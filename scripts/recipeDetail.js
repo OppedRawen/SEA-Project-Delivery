@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
+    // Get the recipe data from localStorage
 let recipeDataString = localStorage.getItem('currentRecipe');
 if(recipeDataString){
 fetchRecipeDetails(recipeDataString);
@@ -10,14 +11,14 @@ console.log(recipeDataString);
 }
 
 });
-
+// fetch recipe details by uri
 function fetchRecipeDetails(recipeURL) {
     let apiKey = '135c36155bd23b962aa9e0a9addb3b05'; 
     let apiId = '580529d7';
     var proxyUrl = 'https://afternoon-badlands-11870.herokuapp.com/';
     // Assuming recipeURL is the complete URI received from localStorage and needs to be encoded
     let encodedUri = encodeURIComponent(recipeURL);
-    // Simplified and corrected fetch URL
+//  using proxyUrl to avoid CORS error
     let fetchUrl = `${proxyUrl}https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=${encodedUri}&app_id=${apiId}&app_key=${apiKey}`;
 
     fetch(fetchUrl, {
@@ -43,7 +44,7 @@ function fetchRecipeDetails(recipeURL) {
 
 
 function displayRecipeDetails(data) {
-    let recipe = data.hits[0].recipe; // Adjusted assuming `data` is the recipe object
+    let recipe = data.hits[0].recipe; 
     let recipeContainer = document.getElementById('recipe-detail-container');
 
     // Dynamically generate DietLabels and TotalNutrients content

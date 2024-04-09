@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // Loop through each saved recipe and fetch the details
     savedRecipes.forEach(uri => {
     
         let apiKey = '135c36155bd23b962aa9e0a9addb3b05'; 
         let apiId = '580529d7';
         var proxyUrl = 'https://afternoon-badlands-11870.herokuapp.com/';
         let encodedUri = encodeURIComponent(uri);
-        // Assuming recipeURL is the complete URI received from localStorage and needs to be encoded
-       
-        // Simplified and corrected fetch URL
+        // Using proxyUrl to avoid CORS error
         let fetchUrl = `${proxyUrl}https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=${encodedUri}&app_id=${apiId}&app_key=${apiKey}`;
 
         fetch(fetchUrl, {

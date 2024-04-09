@@ -16,7 +16,7 @@ nav {
     padding: 0 20px;
     margin: auto;
     display: flex;
-    justify-content: space-between; /* Aligns content to the right */
+    justify-content: space-between;
   
 }
 .home-button {
