@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', function(){
-let recipeDataString = localStorage.getItem('recipeURL');
+let recipeDataString = localStorage.getItem('currentRecipe');
+if(recipeDataString){
 fetchRecipeDetails(recipeDataString);
+localStorage.removeItem('currentRecipe');
 console.log(recipeDataString);
+}else{
+    console.log('No recipe data found');
+
+}
 
 });
 

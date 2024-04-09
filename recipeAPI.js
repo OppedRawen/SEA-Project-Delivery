@@ -73,22 +73,27 @@ function displayRecipes(data) {
         if(e.target.matches('.learn-more')){
             e.preventDefault();
             const uri = e.target.getAttribute('data-uri');
-            localStorage
+            localStorage.setItem('currentRecipe', uri);
 
             window.location.href = `recipeDetails.html`;
         }
 
         if(e.target.classList.contains('heart')){
             e.preventDefault();
-            let recipeURI= e.target.getAttribute('data-uri');
-            console.log(recipeURI);
+            const recipeURI = e.target.getAttribute('data-uri');
             let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-            if(!savedRecipes.includes(recipeURI)){
+        
+            if(savedRecipes.includes(recipeURI)){
+                // If already saved, remove it
+                savedRecipes = savedRecipes.filter(uri => uri !== recipeURI);
+                e.target.style.color = ''; // Change color back to indicate unsaved
+            } else {
+                // If not saved, add it
                 savedRecipes.push(recipeURI);
-                localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
-                console.log('Recipe saved');
-                e.target.style.color = 'red';
+                e.target.style.color = 'red'; // Change color to indicate saved
             }
+        
+            localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
         }
 }
 
