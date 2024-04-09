@@ -15,6 +15,7 @@ function getQuery() {
 
 // Fetch recipes from API
 function fetchRecipes(recipe) {
+    // could be stored in a proxy serverside to avoid exposing the API key
     let apiKey ='135c36155bd23b962aa9e0a9addb3b05'; 
     let apiId= '580529d7';
     // Using a proxy to avoid CORS error
