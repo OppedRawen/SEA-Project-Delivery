@@ -47,7 +47,7 @@ nav {
     border: none;
     border-radius: 5px;
 
-    
+
 }
 #search-button {
     background-color: #008CBA;
@@ -60,10 +60,21 @@ nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Space between cards */
+    gap: 20px; 
     padding: 20px;
 }
+.heart{
+    cursor: pointer;
+    border-color: black;
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    
+    display: inline-block; 
+    padding: 5px; 
+    margin-left: 5px; 
 
+}
 .card {
     width: calc(33.33% - 20px); /* Adjusts width to fit 4 cards per row accounting for gap */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);

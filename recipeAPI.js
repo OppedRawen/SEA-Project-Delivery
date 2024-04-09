@@ -58,47 +58,39 @@ function displayRecipes(data) {
     });
     recipeContainer.innerHTML = recipeElements.join('');
    
-
-    recipeContainer.addEventListener('click', function(e){
-        // let targetCard = e.target.closest('.card');
-      
-        // if(targetCard){
-        //     e.preventDefault();
-        //     let recipeURI= targetCard.getAttribute('data-uri');
-        //     localStorage.setItem('recipeURL', recipeURI);
-        //     console.log(recipeURI);
-        // // Assuming you want to pass the recipe URL or any other simple attribute
-        // window.location.href = `recipeDetails.html`;
-        // }
-        if(e.target.matches('.learn-more')){
+    recipeContainer.addEventListener('click', function(e) {
+        let target = e.target; // Define target here based on the event's target
+    
+        if(target.matches('.learn-more')) {
             e.preventDefault();
-            const uri = e.target.getAttribute('data-uri');
+            const uri = target.getAttribute('data-uri');
             localStorage.setItem('currentRecipe', uri);
-
             window.location.href = `recipeDetails.html`;
-        }
-
-        if(e.target.classList.contains('heart')){
+        } else if (target.classList.contains('heart') || target.closest('.heart')) {
+            // Adjusted the condition to use target and also check if the clicked element is inside a heart icon
             e.preventDefault();
-            const recipeURI = e.target.getAttribute('data-uri');
+            // If clicking inside heart icon, adjust target to the closest heart icon
+            if (!target.classList.contains('heart')) {
+                target = target.closest('.heart');
+            }
+            const recipeURI = target.getAttribute('data-uri');
             let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-        
-            if(savedRecipes.includes(recipeURI)){
+            
+            if(savedRecipes.includes(recipeURI)) {
                 // If already saved, remove it
                 savedRecipes = savedRecipes.filter(uri => uri !== recipeURI);
-                e.target.style.color = ''; // Change color back to indicate unsaved
+                target.style.color = ''; 
             } else {
                 // If not saved, add it
                 savedRecipes.push(recipeURI);
-                e.target.style.color = 'red'; // Change color to indicate saved
+                target.style.color = 'red'; 
+                console.log(target.style.color, 'color')
             }
-        
+            
             localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
         }
-}
-
-
-)
+    });
+    
 }
 
 
