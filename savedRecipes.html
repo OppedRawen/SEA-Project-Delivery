@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="./Styles/savedRecipes.css"> 
 </head>
 <body>
+    <nav>
+        <div class="nav-content">
+            <button onclick="window.location.href='index.html'" class="home-button">Home</button>
+           
+            <div class="search-container">
+                <form id="search-form">
+                    <input type="text" id="search-input" placeholder="Search for a recipe">
+                    <button type="submit" id="search-button">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
     <div id="saved-recipes-container"></div>
 
     <script src="./scripts/savedRecipe.js"></script> 

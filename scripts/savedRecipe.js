@@ -51,6 +51,7 @@ function fetchRecipeDetails(data,savedRecipesContainer) {
             <div class="card-body">
                 <h5>${recipe.label}</h5>
                 <button class="btn learn-more" data-uri="${recipe.uri}">Learn More</button>
+                <button class="btn delete-recipe" data-uri="${recipe.uri}">Delete</button>
             </div>
         </div>
     `;
@@ -59,15 +60,25 @@ function fetchRecipeDetails(data,savedRecipesContainer) {
     savedRecipesContainer.innerHTML += cardHtml;
    
         savedRecipesContainer.addEventListener('click', function(e) {
+            const uri = e.target.getAttribute('data-uri');
+
             if (e.target.matches('.learn-more')) {
                 e.preventDefault();
-                const uri = e.target.getAttribute('data-uri');
                 // Store the URI or full recipe data as needed
                 localStorage.setItem('currentRecipe', uri); // Adjust based on your needs
                 
                 // Navigate to the details page
                 window.location.href = `recipeDetails.html`;
+            }else if(e.target.matches('.delete-recipe')){
+                e.preventDefault();
+                deleteRecipe(uri);
+                e.target.closest('.card').remove();
             }
         });
 
+}
+function deleteRecipe(uri){
+    let savedRecipes=JSON.parse(localStorage.getItem('savedRecipes')) || [];
+    savedRecipes = savedRecipes.filter(recipeUri => recipeUri !== uri);
+    localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
 }

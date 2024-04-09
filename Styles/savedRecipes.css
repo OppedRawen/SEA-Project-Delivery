@@ -3,8 +3,50 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: #f5f5dc; 
+
+}
+nav {
+    width: 100%;
+    padding: 10px 0;
+    background-color:#333;
 }
 
+.nav-content {
+    padding: 0 20px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between; /* Aligns content to the right */
+  
+}
+.home-button {
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container {
+    display: inline-block;
+}
+
+#search-input, #search-button {
+    padding: 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+
+
+}
+#search-button {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}   
 .card {
     width: 90%;
     max-width: 500px;
@@ -17,6 +59,16 @@
     border-radius: 10px;
     overflow: hidden;
 }
+.delete-recipe{
+    background-color: red;
+    color: red;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
 
 .card img {
     width: 100%;
@@ -27,9 +79,8 @@
     padding: 15px;
     text-align: center;
 }
-
-.card .btn {
-    background-color: #008CBA;
+.learn-more {
+    background-color: #007B9E;
     color: white;
     padding: 10px 20px;
     margin: 10px 0;
@@ -37,7 +88,16 @@
     cursor: pointer;
     border-radius: 5px;
 }
+.card .btn {
+    
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    /* hover transition */
+    transition: background-color 0.3s;
 
-.card .btn:hover {
-    background-color: #007B9E;
 }
+
