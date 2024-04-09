@@ -53,15 +53,17 @@ function displayRecipes(data) {
         let truncatedIngredients = truncateText(result.recipe.ingredientLines, 100); 
 
         return `
-        <div class="card" data-uri=${result.recipe.uri} style="width: 18rem;">
-  <img src="${result.recipe.image}"class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">${result.recipe.label}</h5>
-    <p class="card-text">${truncatedIngredients}</p>
-    <button class="btn btn-primary learn-more" data-uri="${result.recipe.uri}">Learn More</button>
-    <span class="heart" data-uri="${result.recipe.uri}">&#x2764;</span>
-  </div>
-</div>`
+        <div class="card" data-uri="${result.recipe.uri}" style="width: 18rem;">
+            <img src="${result.recipe.image}" class="card-img-top" alt="${result.recipe.label}">
+            <div class="card-body">
+                <h5 class="card-title">${result.recipe.label}</h5>
+                <p class="card-text">${truncatedIngredients}</p>
+                <div class="card-actions">
+                    <button class="btn btn-primary learn-more" data-uri="${result.recipe.uri}">Learn More</button>
+                    <span class="heart" data-uri="${result.recipe.uri}">&#x2764;</span>
+                </div>
+            </div>
+        </div>`;
     });
     recipeContainer.innerHTML = recipeElements.join('');
    
