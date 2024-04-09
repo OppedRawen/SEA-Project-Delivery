@@ -52,6 +52,7 @@ function displayRecipes(data) {
     <h5 class="card-title">${result.recipe.label}</h5>
     <p class="card-text">${result.recipe.ingredientLines.join(', ')}</p>
     <a href="${result.recipe.url}" class="btn btn-primary">Link to Recipe</a>
+    <span class="heart" data-uri="${result.recipe.uri}">&#x2764;</span>
   </div>
 </div>`
     });
@@ -59,17 +60,32 @@ function displayRecipes(data) {
    
 
     recipeContainer.addEventListener('click', function(e){
-        let targetCard = e.target.closest('.card');
+        // let targetCard = e.target.closest('.card');
       
-        if(targetCard){
+        // if(targetCard){
+        //     e.preventDefault();
+        //     let recipeURI= targetCard.getAttribute('data-uri');
+        //     localStorage.setItem('recipeURL', recipeURI);
+        //     console.log(recipeURI);
+        // // Assuming you want to pass the recipe URL or any other simple attribute
+        // window.location.href = `recipeDetails.html`;
+        // }
+
+        if(e.target.classList.contains('heart')){
             e.preventDefault();
-            let recipeURI= targetCard.getAttribute('data-uri');
-            localStorage.setItem('recipeURL', recipeURI);
+            let recipeURI= e.target.getAttribute('data-uri');
             console.log(recipeURI);
-        // Assuming you want to pass the recipe URL or any other simple attribute
-        window.location.href = `recipeDetails.html`;
+            let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+            if(!savedRecipes.includes(recipeURI)){
+                savedRecipes.push(recipeURI);
+                localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+                console.log('Recipe saved');
+                e.target.style.color = 'red';
+            }
         }
 }
+
+
 )
 }
 
