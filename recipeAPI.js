@@ -46,12 +46,14 @@ function fetchRecipes(recipe) {
 function displayRecipes(data) {
     let results = data.hits;
     console.log(results, 'recipes');
+    let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
     let recipeContainer = document.getElementById('results-container');
     recipeContainer.innerHTML = '';
 
     let recipeElements = results.map(function(result) {
         let truncatedIngredients = truncateText(result.recipe.ingredientLines, 100); 
-
+        let isSaved = savedRecipes.includes(result.recipe.uri);
+        let heartColor = isSaved ? 'red' : 'black';
         return `
         <div class="card" data-uri="${result.recipe.uri}" style="width: 18rem;">
             <img src="${result.recipe.image}" class="card-img-top" alt="${result.recipe.label}">
@@ -60,7 +62,7 @@ function displayRecipes(data) {
                 <p class="card-text">${truncatedIngredients}</p>
                 <div class="card-actions">
                     <button class="btn btn-primary learn-more" data-uri="${result.recipe.uri}">Learn More</button>
-                    <span class="heart" data-uri="${result.recipe.uri}">&#x2764;</span>
+                    <p class="heart"style="color: ${heartColor};" data-uri="${result.recipe.uri}">&#x2764;</p>
                 </div>
             </div>
         </div>`;
@@ -76,9 +78,9 @@ function displayRecipes(data) {
             localStorage.setItem('currentRecipe', uri);
             window.location.href = `recipeDetails.html`;
         } else if (target.classList.contains('heart') || target.closest('.heart')) {
-            // Adjusted the condition to use target and also check if the clicked element is inside a heart icon
+          console.log('heart clicked');
             e.preventDefault();
-            // If clicking inside heart icon, adjust target to the closest heart icon
+           
             if (!target.classList.contains('heart')) {
                 target = target.closest('.heart');
             }
@@ -86,14 +88,15 @@ function displayRecipes(data) {
             let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
             
             if(savedRecipes.includes(recipeURI)) {
-                // If already saved, remove it
+                // If already saved, remove it and change heart to black
                 savedRecipes = savedRecipes.filter(uri => uri !== recipeURI);
-                target.style.color = ''; 
+                target.style.color = 'black'; 
+                target.classList.remove('heart-saved');
             } else {
-                // If not saved, add it
+                // If not saved, add it and change heart to red
                 savedRecipes.push(recipeURI);
                 target.style.color = 'red'; 
-                console.log(target.style.color, 'color')
+                target.classList.add('heart-saved');
             }
             
             localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));

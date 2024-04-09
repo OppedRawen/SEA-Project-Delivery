@@ -68,7 +68,9 @@ nav {
 .heart{
     cursor: pointer;
     align-self: flex-end; 
-    border-color: black;
+    color:black;
+    background-color: white;
+
     border-radius: 50%;
     border-width: 1px;
     border-style: solid;
@@ -76,13 +78,18 @@ nav {
     display: inline-block; 
     padding: 5px; 
     margin-left: 5px; 
+    
 
+}
+.heart.heart-saved {
+    color: red; /* Color when the recipe is saved */
 }
 .card {
     width: calc(33.33% - 20px); 
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 10px;
     overflow: hidden;
+
     display:flex;
     flex-direction: column;
     justify-content: space-between;
