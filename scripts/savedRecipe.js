@@ -57,19 +57,17 @@ function fetchRecipeDetails(data,savedRecipesContainer) {
 
     // Append the new card to the container
     savedRecipesContainer.innerHTML += cardHtml;
-    document.addEventListener('DOMContentLoaded', () => {
-        // Your existing code to fetch and display recipes...
-    
-        // Add an event listener for clicks within the savedRecipesContainer
+   
         savedRecipesContainer.addEventListener('click', function(e) {
             if (e.target.matches('.learn-more')) {
+                e.preventDefault();
                 const uri = e.target.getAttribute('data-uri');
                 // Store the URI or full recipe data as needed
                 localStorage.setItem('currentRecipe', uri); // Adjust based on your needs
                 
                 // Navigate to the details page
-                window.location.href = `recipeDetails.html?uri=${encodeURIComponent(uri)}`;
+                window.location.href = `recipeDetails.html`;
             }
         });
-    });
+
 }

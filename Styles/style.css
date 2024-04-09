@@ -12,15 +12,21 @@ body, html {
 }
 
 nav {
-    position: absolute;
-    top: 0;
-    right: 0;
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
+    /* top left */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
 }
 
 .home-button {
     padding: 10px 20px;
-    background-color: #4CAF50; /* A friendly green */
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;

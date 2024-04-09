@@ -1,29 +1,67 @@
-/* recipe grid */
-#results-container{
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    width: 100%;
+    background-color: #f5f5dc; /* Cozy background color */
+    padding: 10px 0;
+}
+
+.nav-content {
+    padding: 0 20px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between; /* Aligns content to the right */
   
 }
 
-/* recipe cards */
-.card{
-    border:1px solid #ccc;
-    margin:10px;
-    padding:10px;
-    border-radius:5px;
- 
-    box-shadow:0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
+.search-container {
+    display: inline-block;
 }
-.card:hover{
-    cursor: pointer;
-    box-shadow:0 2px 4px rgba(0,0,0,0.2);
-    transform: scale(1.02);
-    transition: all 0.3s ease;
+
+#search-input, #search-button {
+    padding: 10px;
+    margin-left: 5px;
 }
+
+#results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+}
+
+.card {
+    width: calc(33.33% - 20px); /* Adjusts width to fit 4 cards per row accounting for gap */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.result-card-content {
+    padding: 15px;
+}
+
+.result-card img {
+    width: 100%; /* Ensures the image fills the card width */
+    height: auto; /* Maintains aspect ratio */
+}
+
 @media screen and (max-width: 768px) {
-    .card {
-        margin-top: 2rem;
+    .result-card {
+        width: calc(50% - 20px); /* Display 2 cards per row on smaller screens */
     }
-  }
+}
+
+@media screen and (max-width: 480px) {
+    .result-card {
+        width: 100%; /* 1 card per row on very small screens */
+    }
+}
