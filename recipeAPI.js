@@ -44,13 +44,14 @@ function displayRecipes(data) {
     recipeContainer.innerHTML = '';
 
     let recipeElements = results.map(function(result) {
-      
+        let truncatedIngredients = truncateText(result.recipe.ingredientLines, 100); 
+
         return `
         <div class="card" data-uri=${result.recipe.uri} style="width: 18rem;">
   <img src="${result.recipe.image}"class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">${result.recipe.label}</h5>
-    <p class="card-text">${result.recipe.ingredientLines.join(', ')}</p>
+    <p class="card-text">${truncatedIngredients}</p>
     <button class="btn btn-primary learn-more" data-uri="${result.recipe.uri}">Learn More</button>
     <span class="heart" data-uri="${result.recipe.uri}">&#x2764;</span>
   </div>
@@ -94,3 +95,10 @@ function displayRecipes(data) {
 }
 
 
+function truncateText(textArray, maxLength) {
+    let text = textArray.join(', ');
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength - 3) + "..."; // Subtract 3 to accommodate the ellipsis
+    }
+    return text;
+}
